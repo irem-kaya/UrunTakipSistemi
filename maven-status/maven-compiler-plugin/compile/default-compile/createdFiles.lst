@@ -1,0 +1,11 @@
+com\example\demo\Entity\Role.class
+com\example\demo\Entity\User.class
+com\example\demo\Controller\CategoryController.class
+com\example\demo\Repository\CategoryRepository.class
+com\example\demo\Demo1Application.class
+com\example\demo\Repository\RoleRepository.class
+com\example\demo\Repository\ProductRepository.class
+com\example\demo\Controller\ProductController.class
+com\example\demo\Repository\UserRepository.class
+com\example\demo\Entity\Product.class
+com\example\demo\Entity\Category.class

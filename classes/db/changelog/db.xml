@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog">
+
+    <changeSet id="1" author="irem.kaya">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="category"/>
+            </not>
+        </preConditions>
+        <createTable tableName="category">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="irem.kaya">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="product"/>
+            </not>
+        </preConditions>
+        <createTable tableName="product">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="category_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_product_category" referencedTableName="category" referencedColumnNames="id"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+            <column name="explanation" type="text"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="irem.kaya">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="role"/>
+            </not>
+        </preConditions>
+        <createTable tableName="role">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="irem.kaya">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user"/>
+            </not>
+        </preConditions>
+        <createTable tableName="user">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="username" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_role" referencedTableName="role" referencedColumnNames="id"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="irem.kaya">
+        <addForeignKeyConstraint
+                baseTableName="product"
+                baseColumnNames="category_id"
+                constraintName="fk_product_category"
+                referencedTableName="category"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="6" author="irem.kaya">
+        <addForeignKeyConstraint
+                baseTableName="user"
+                baseColumnNames="role_id"
+                constraintName="fk_user_role"
+                referencedTableName="role"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="7" author="irem.kaya">
+        <insert tableName="role">
+            <column name="id" value="1"/>
+            <column name="name" value="admin"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" value="2"/>
+            <column name="name" value="user"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="8" author="irem.kaya">
+        <insert tableName="user">
+            <column name="id" value="1"/>
+            <column name="email" value="abc@abc.com"/>
+            <column name="username" value="admin"/>
+            <column name="role_id" value="1"/>
+            <column name="password" value="hashed_password"/> <!-- Replace with a hashed password -->
+        </insert>
+    </changeSet>
+
+    <changeSet id="9" author="irem.kaya">
+        <insert tableName="category">
+            <column name="id" value="1"/>
+            <column name="name" value="Electronics"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="2"/>
+            <column name="name" value="Books"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="10" author="irem.kaya">
+        <insert tableName="product">
+            <column name="id" value="1"/>
+            <column name="category_id" value="1"/>
+            <column name="name" value="Smartphone"/>
+            <column name="price" value="699.99"/>
+            <column name="explanation" value="Latest model smartphone with high performance."/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="2"/>
+            <column name="category_id" value="2"/>
+            <column name="name" value="Java Programming Book"/>
+            <column name="price" value="39.99"/>
+            <column name="explanation" value="Comprehensive guide to Java programming."/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
