@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM maven:3.8.4-openjdk-21 AS build
+FROM maven:3.8.4-openjdk-17 AS build
 WORKDIR /app
 
 # Copy the project files
@@ -10,7 +10,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run
-FROM openjdk:21-jdk-slim
+FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the packaged application from the build stage
