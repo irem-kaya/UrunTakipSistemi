@@ -20,4 +20,4 @@ COPY --from=build /*.jar app.jar
 EXPOSE 8080
 
 # Run the application
-ENTRYPOINT ["java", "-jar",
+ENTRYPOINT ["java", "-jar", "app.jar"]
