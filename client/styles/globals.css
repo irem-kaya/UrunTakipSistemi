@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+          to bottom,
+          transparent,
+          rgb(var(--background-end-rgb))
+  )
+  rgb(var(--background-start-rgb));
+}
+
+h1 {
+  color: rgb(var(--foreground-rgb));
+}
+
+.product-table, .category-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.product-table th, .product-table td,
+.category-table th, .category-table td {
+  border: 1px solid rgb(var(--foreground-rgb));
+  padding: 8px;
+  text-align: left;
+}
+
+.product-table th, .category-table th {
+  background-color: rgb(var(--background-start-rgb));
+  color: rgb(var(--foreground-rgb));
+}
+
+.product-table tr:nth-child(even), .category-table tr:nth-child(even) {
+  background-color: rgb(240, 240, 240);
+}
+
+.product-detail {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-start-rgb));
+  color: rgb(var(--foreground-rgb));
+}
+
+.error {
+  color: red;
+}
+
+button {
+  background-color: rgb(0, 123, 255);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: rgb(0, 105, 217);
+}
