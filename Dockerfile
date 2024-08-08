@@ -5,4 +5,4 @@ COPY ${JAR_FILE} /app.jar
 
 ENTRYPOINT ["sh", "-c", "java -jar /app.jar --server.port=${PORT}"]
 
-EXPOSE 10000
+EXPOSE 8080
