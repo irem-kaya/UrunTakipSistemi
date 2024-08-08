@@ -21,7 +21,7 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    @GetMapping
+    @GetMapping("/")
     public List<Product> getAllProducts() {
         List<Product> products = productRepository.findAll();
         logger.info("Retrieved products: {}", products);
